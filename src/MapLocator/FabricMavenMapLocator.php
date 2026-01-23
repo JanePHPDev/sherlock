@@ -14,6 +14,11 @@ class FabricMavenMapLocator extends MapLocator
 
     public function findMappingURL(): ?string
     {
+        if (version_compare($this->version, '25', '>')) {
+            // Minecraft 26.1+ is unobfuscated
+            return null;
+        }
+
         $versionList = self::getXML("https://maven.fabricmc.net/net/fabricmc/yarn/maven-metadata.xml");
         $latestBuildID = null;
         $latestVersion = null;

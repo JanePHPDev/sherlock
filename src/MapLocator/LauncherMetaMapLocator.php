@@ -13,6 +13,11 @@ class LauncherMetaMapLocator extends MapLocator
      */
     public function findMappingFile(): ?LauncherMetaFile
     {
+        if (version_compare($this->version, '25', '>')) {
+            // Minecraft 26.1+ is unobfuscated
+            return null;
+        }
+
         $versionInfo = LauncherMetaVersionList::getVersionList()->getVersion($this->version);
         if ($versionInfo === null) {
             throw new \InvalidArgumentException("Unknown version $this->version");
