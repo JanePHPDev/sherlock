@@ -18,7 +18,7 @@ class YarnMap extends ObfuscationMap
             $type = $data[0];
 
             $named = array_pop($data);
-            $named = str_replace("/", ".", $named?? "" );
+            $named = str_replace("/", ".", $named ?? "" );
 
             $intermediary = array_pop($data);
             $intermediary = str_replace("/", ".", $intermediary ?? "" );
